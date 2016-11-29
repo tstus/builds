@@ -105,7 +105,9 @@ class GitRepository(git.Repo):
 
         LOG.info("%(name)s: Checking out reference %(ref)s"
                  % dict(name=self.name, ref=ref_name))
+        # pylint: disable=assigning-non-slot
         self.head.reference = self._get_reference(ref_name)
+        # pylint: enable=assigning-non-slot
         try:
             self.head.reset(index=True, working_tree=True)
         except git.exc.GitCommandError:
