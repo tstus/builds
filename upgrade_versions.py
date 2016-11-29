@@ -76,7 +76,8 @@ def _get_git_log(repo, since_id):
 def rpm_bump_spec(specfile, log, user_name, user_email):
     comment = "\n".join(['- ' + l for l in log])
     user_string = "%(user_name)s <%(user_email)s>" % locals()
-    cmd = "rpmdev-bumpspec -c '%s' -u '%s' %s" % (comment, user_string, specfile)
+    cmd = "rpmdev-bumpspec -c '%s' -u '%s' %s" % (comment, user_string,
+                                                  specfile)
     utils.run_command(cmd)
 
 
@@ -84,6 +85,7 @@ def rpm_query_spec_file(tag, spec):
     return utils.run_command(
         "rpmspec --srpm -q --qf '%%{%s}' %s 2>/dev/null" % (
             tag.upper(), spec)).strip()
+
 
 def rpm_cmp_versions(v1, v2):
     try:
@@ -227,7 +229,8 @@ class Version(object):
             raise exception.PackageError(msg)
 
 
-def push_new_versions(versions_repo, release_date, versions_repo_push_url,
+def push_new_versions(
+        versions_repo, release_date, versions_repo_push_url,
         versions_repo_push_branch, committer_name, committer_email):
     """
     Push updated versions to the remote Git repository, using the

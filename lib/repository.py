@@ -54,7 +54,8 @@ def get_git_repository(name, remote_repo_url, parent_dir_path):
 class GitRepository(git.Repo):
 
     @classmethod
-    def clone_from(cls, remote_repo_url, repo_path, proxy=None, *args, **kwargs):
+    def clone_from(cls, remote_repo_url, repo_path, proxy=None, *args,
+                   **kwargs):
         """
         Clone a repository from a remote URL into a local path.
         """
@@ -80,7 +81,8 @@ class GitRepository(git.Repo):
 
     def __init__(self, repo_path, *args, **kwargs):
         super(GitRepository, self).__init__(repo_path, *args, **kwargs)
-        LOG.info("Found existent repository at destination path %s" % repo_path)
+        LOG.info("Found existent repository at destination path %s" %
+                 repo_path)
 
     @property
     def name(self):

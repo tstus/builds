@@ -61,9 +61,10 @@ def discover_packages():
     try:
         package_list = [
             package for package in os.listdir(build_versions_repo_dir)
-            if os.path.isdir(os.path.join(build_versions_repo_dir, package)) and
-            os.path.isfile(os.path.join(build_versions_repo_dir, package,
-                                        "".join([package, ".yaml"])))
+            if os.path.isdir(os.path.join(
+                    build_versions_repo_dir, package)) and
+            os.path.isfile(os.path.join(
+                build_versions_repo_dir, package, package + ".yaml"))
         ]
     except OSError:
         LOG.error("No packages found in versions repository directory")
@@ -94,9 +95,10 @@ class ConfigParser(object):
             configuration.
         """
         self.parser.add_argument('--config-file', '-c',
-                                 help='Path of the configuration file for build '
-                                      'scripts',
-                                 # NOTE(maurosr): move this to /etc in the future
+                                 help='Path of the configuration file for '
+                                 'build scripts',
+                                 # NOTE(maurosr): move this to /etc in
+                                 # the future
                                  default='./config.yaml')
         self.parser.add_argument('--packages', '-p',
                                  help='Packages to be built',
@@ -111,7 +113,8 @@ class ConfigParser(object):
                                  help='Directory to save the RPMs.',
                                  default='./result')
         self.parser.add_argument('--repositories-path', '-R',
-                                 help='Directory where to clone code repositories',
+                                 help='Directory where to clone code '
+                                 'repositories',
                                  default='/var/lib/host-os/repositories')
         self.parser.add_argument('--keep-builddir',
                                  help='Keep build directory and its logs and '
@@ -142,7 +145,6 @@ class ConfigParser(object):
         self.parser.add_argument('--committer-email',
                                  help='Email used when creating a commit and '
                                  'bumping spec files')
-
 
     def parse_arguments_list(self, args):
         """

@@ -57,7 +57,7 @@ class Mock(build_system.PackageBuilder):
             # otherwise.
         except exception.SubprocessError:
             LOG.info("%s: Failed to build RPMs, build artifacts are kept at "
-                  "%s" % (package.name, self.build_dir))
+                     "%s" % (package.name, self.build_dir))
             raise
 
         msg = "%s: Success! RPMs built!" % (package.name)
