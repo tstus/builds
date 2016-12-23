@@ -153,7 +153,7 @@ class Package(object):
 
     def _setup_repository(self, dest=None, branch=None):
         self.repository = repository.get_git_repository(
-            self.name, self.clone_url, dest)
+            self.clone_url, dest)
         self.repository.checkout(self.commit_id or self.branch or branch)
 
     def _download_source(self, build_dir):
